@@ -123,7 +123,8 @@ def Ellipsoid(obj, mass, mat):
         if mat.subtype != "eye":
             diag = [v_or_1(mat.floats[4*i]) for i in range(3)]
         scale = v_or_1(mat.scale)
-    s = [0.5*sqrt(x*scale/v_or_1(mass)) for x in diag]
+#    s = [0.5*sqrt(x*scale/v_or_1(mass)) for x in diag]
+    s = [0.5*(x*scale/1) for x in diag]
     bm = bmesh.new()
     for v in [(x*s[0],y*s[1],z*s[2]) for z in [-1., 1.] for y in [-1., 1.] for x in [-1., 1.]]:
         bm.verts.new(v)
@@ -140,7 +141,8 @@ def Ellipsoid(obj, mass, mat):
 
 def Sphere(obj):
     bm = bmesh.new()
-    for v in [(x, y, z) for z in [-0.5, 0.5] for y in [-0.5, 0.5] for x in [-0.5, 0.5]]:
+#    for v in [(x, y, z) for z in [-0.5, 0.5] for y in [-0.5, 0.5] for x in [-0.5, 0.5]]:
+    for v in [(x, y, z) for z in [-0.05, 0.05] for y in [-0.05, 0.05] for x in [-0.05, 0.05]]:
         bm.verts.new(v)
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
@@ -152,7 +154,8 @@ def Sphere(obj):
 
 def Cube(obj):
     bm = bmesh.new()
-    for v in [(x, y, z) for z in [-0.5, 0.5] for y in [-0.5, 0.5] for x in [-0.5, 0.5]]:
+#    for v in [(x, y, z) for z in [-0.5, 0.5] for y in [-0.5, 0.5] for x in [-0.5, 0.5]]:
+    for v in [(x, y, z) for z in [-0.05, 0.05] for y in [-0.05, 0.05] for x in [-0.05, 0.05]]:
         bm.verts.new(v)
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
@@ -167,7 +170,8 @@ def Cube(obj):
 
 def RhombicPyramid(obj):
     bm = bmesh.new()
-    for v in [(.333,0.,0.),(0.,.666,0.),(-.333,0.,0.),(0.,-.666,0.),(0.,0.,1.)]:
+#    for v in [(.333,0.,0.),(0.,.666,0.),(-.333,0.,0.),(0.,-.666,0.),(0.,0.,1.)]:
+    for v in [(.0333,0.,0.),(0.,.0666,0.),(-.0333,0.,0.),(0.,-.0666,0.),(0.,0.,0.1)]:
         bm.verts.new(v)
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
@@ -182,7 +186,8 @@ def RhombicPyramid(obj):
 
 def TriPyramid(obj):
     bm = bmesh.new()
-    for v in [(0.,0.,0.),(.333,0.,0.),(0.,.666,0.),(0.,0.,1.)]:
+#    for v in [(0.,0.,0.),(.333,0.,0.),(0.,.666,0.),(0.,0.,1.)]:
+    for v in [(0.,0.,0.),(.0333,0.,0.),(0.,.0666,0.),(0.,0.,0.1)]:
         bm.verts.new(v)
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
@@ -197,7 +202,8 @@ def TriPyramid(obj):
 
 def Octahedron(obj):
     bm = bmesh.new()
-    for v in [(.5,0.,0.),(0.,.5,0.),(-.5,0.,0.),(0.,-.5,0.),(0.,0.,.5),(0.,0.,-.5)]:
+#    for v in [(.5,0.,0.),(0.,.5,0.),(-.5,0.,0.),(0.,-.5,0.),(0.,0.,.5),(0.,0.,-.5)]:
+    for v in [(.05,0.,0.),(0.,.05,0.),(-.05,0.,0.),(0.,-.05,0.),(0.,0.,.05),(0.,0.,-.05)]:
         bm.verts.new(v)
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
@@ -212,7 +218,8 @@ def Octahedron(obj):
 
 def Teardrop(obj):
     bm = bmesh.new()
-    for v in [(x, y, -.5) for y in [-.5, .5] for x in [-.5, .5]] + [(0.,0.,0.)]:
+#    for v in [(x, y, -.5) for y in [-.5, .5] for x in [-.5, .5]] + [(0.,0.,0.)]:
+    for v in [(x, y, -.05) for y in [-.05, .05] for x in [-.05, .05]] + [(0.,0.,0.)]:
         bm.verts.new(v)
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
@@ -230,9 +237,12 @@ def Teardrop(obj):
 def Cylinder(obj):
     bm = bmesh.new()
     scale = .5
-    for z in [-1., 1.]:
-        for y in [-1., 1.]:
-            for x in [-1., 1.]:
+#    for z in [-1., 1.]:
+#        for y in [-1., 1.]:
+#            for x in [-1., 1.]:
+    for z in [-0.05, 0.05]:
+        for y in [-0.05, 0.05]:
+            for x in [-0.05, 0.0.5]:
                 bm.verts.new((scale*x,scale*y,scale*z))
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
@@ -247,7 +257,8 @@ def Cylinder(obj):
 
 def RectangularCuboid(obj):
     bm = bmesh.new()
-    for v in [(x, y, z) for z in [-0.2, 0.2] for y in [-0.1, 0.1] for x in [-0.3, 0.3]]:
+#    for v in [(x, y, z) for z in [-0.2, 0.2] for y in [-0.1, 0.1] for x in [-0.3, 0.3]]:
+    for v in [(x, y, z) for z in [-0.02, 0.02] for y in [-0.01, 0.01] for x in [-0.03, 0.03]]:
         bm.verts.new(v)
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
