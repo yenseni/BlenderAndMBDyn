@@ -242,7 +242,7 @@ def Cylinder(obj):
 #            for x in [-1., 1.]:
     for z in [-0.05, 0.05]:
         for y in [-0.05, 0.05]:
-            for x in [-0.05, 0.0.5]:
+            for x in [-0.05, 0.05]:
                 bm.verts.new((scale*x,scale*y,scale*z))
     if hasattr(bm.verts, "ensure_lookup_table"):
         bm.verts.ensure_lookup_table()
